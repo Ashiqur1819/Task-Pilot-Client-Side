@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
+  const {user} = useAuth()
+  console.log(user)
+
     return (
       <div className="navbar bg-base-50 shadow-sm px-4 md:px-6 lg:px-8 py-4">
         <div className="navbar-start">
@@ -52,21 +56,29 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end flex items-center gap-3">
-          <Link to="/login">
-            <button className="bg-yellow-400 px-6 py-2 text-gray-700 font-medium hover:bg-yellow-500 cursor-pointer">
-              Log In
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="bg-green-400 px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
-              Register
-            </button>
-          </Link>
-          <Link to="/">
-            <button className="bg-red-500 px-6 py-2 text-white font-medium hover:bg-red-600 cursor-pointer">
-              Log Out
-            </button>
-          </Link>
+          {!user && (
+            <>
+              <Link to="/login">
+                <button className="bg-yellow-400 px-6 py-2 text-gray-700 font-medium hover:bg-yellow-500 cursor-pointer">
+                  Log In
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="bg-green-400 px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
+          {user && (
+            <>
+              <Link to="/">
+                <button className="bg-red-500 px-6 py-2 text-white font-medium hover:bg-red-600 cursor-pointer">
+                  Log Out
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     );
