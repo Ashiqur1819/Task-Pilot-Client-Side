@@ -48,7 +48,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end flex items-center gap-3">
-          <Link>
+          <Link to="/login">
             <button className="bg-yellow-400 px-6 py-2 text-gray-700 font-medium hover:bg-yellow-500 cursor-pointer">
               Log In
             </button>
