@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import AddTask from "../pages/AddTask/AddTask";
 
 
 const router = createBrowserRouter([
@@ -11,19 +12,23 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     errorElement: <p>Error page</p>,
     children: [
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-            path: "login",
-            element: <Login></Login>
-        },
-        {
-            path: "register",
-            element: <Register></Register>
-        },
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "add_task",
+        element: <AddTask></AddTask>,
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
+      },
+    ],
   },
 ]);
 
