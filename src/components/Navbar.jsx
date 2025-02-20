@@ -53,7 +53,7 @@ const Navbar = () => {
               Log In
             </button>
           </Link>
-          <Link>
+          <Link to="/register">
             <button className="bg-green-400 px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
               Register
             </button>
