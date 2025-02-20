@@ -1,5 +1,5 @@
 import { useState } from "react";
-import addtaskbanner from "../../assets/addtaskbg.png"
+import addtaskbanner from "../../assets/bg5.jpg"
 
 const AddTask = () => {
       const [selected, setSelected] = useState("To-Do");
@@ -29,7 +29,7 @@ const AddTask = () => {
                 type="text"
                 name="name"
                 placeholder="Title"
-                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-yellow-400 focus:outline-none"
+                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
                 required
               />
             </div>
@@ -43,7 +43,7 @@ const AddTask = () => {
                 type="text"
                 name="name"
                 placeholder="Description"
-                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-yellow-400 focus:outline-none"
+                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
               />
             </div>
             <div className="form-control mt-1">
@@ -55,7 +55,7 @@ const AddTask = () => {
               <select
                 value={selected}
                 onChange={(e) => setSelected(e.target.value)}
-                className="select w-full text-gray-700 text-base input border border-gray-200 rounded-none cursor-pointer focus:border-yellow-400 focus:outline-none"
+                className="select w-full text-gray-700 text-base input border border-gray-200 rounded-none cursor-pointer focus:border-green-400 focus:outline-none"
               >
                 <option className="text-gray-700">To-Do</option>
                 <option className="text-gray-700">In Progress</option>
@@ -63,7 +63,7 @@ const AddTask = () => {
               </select>
             </div>
             <div className="form-control mt-6">
-              <button className="bg-yellow-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-yellow-500 cursor-pointer">
+              <button className="bg-green-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
                 Log In
               </button>
             </div>

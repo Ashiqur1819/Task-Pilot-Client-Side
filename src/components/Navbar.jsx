@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
-      <div className="navbar bg-base-100 shadow-sm px-4 md:px-6 lg:px-8">
+      <div className="navbar bg-base-50 shadow-sm px-4 md:px-6 lg:px-8 py-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,19 +31,23 @@ const Navbar = () => {
                 <NavLink to="/add_task">Add Task</NavLink>
               </li>
               <li>
-                <NavLink>All Tasks</NavLink>
+                <NavLink to="/all_tasks">All Tasks</NavLink>
               </li>
             </ul>
           </div>
-          <a className="text-xl">TaskPilot</a>
+          <div>
+            <Link to="/">
+              <btn className="text-3xl font-bold text-gray-700">TaskPilot</btn>
+            </Link>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu-horizontal px-1 gap-6">
             <li>
               <NavLink to="/add_task">Add Task</NavLink>
             </li>
             <li>
-              <NavLink>All Tasks</NavLink>
+              <NavLink to="/all_tasks">All Tasks</NavLink>
             </li>
           </ul>
         </div>
@@ -56,6 +60,11 @@ const Navbar = () => {
           <Link to="/register">
             <button className="bg-green-400 px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
               Register
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="bg-red-500 px-6 py-2 text-white font-medium hover:bg-red-600 cursor-pointer">
+              Log Out
             </button>
           </Link>
         </div>

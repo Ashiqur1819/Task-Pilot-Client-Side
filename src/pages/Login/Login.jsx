@@ -1,5 +1,5 @@
 import { useState } from "react";
-import loginbg from "../../assets/loginbg.jpeg"
+import loginbg from "../../assets/bg4.jpg"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import googleImage from "../../assets/google.png"
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Enter Your Email"
-                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-yellow-400 focus:outline-none"
+                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
                 required
               />
             </div>
@@ -46,7 +46,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter Your Password"
-                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-yellow-400 focus:outline-none"
+                className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
                 required
               />
               <button
@@ -66,7 +66,7 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-3">
-              <button className="bg-yellow-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-yellow-500 cursor-pointer">
+              <button className="bg-green-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
                 Log In
               </button>
             </div>
@@ -77,7 +77,7 @@ const Login = () => {
             <span>Continue With Google</span>
           </button>
           <div className="mt-3">
-            <p className="text-gray-700 text-center">{"Don't have an account?"} <span className="underline text-green-600 font-medium"><Link to="/register">Register</Link></span></p>
+            <p className="text-gray-700 text-center">{"Don't have an account?"} <span className="underline text-yellow-500 font-medium"><Link to="/register">Register</Link></span></p>
           </div>
         </div>
       </div>
