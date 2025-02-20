@@ -7,7 +7,7 @@ const AddTask = () => {
       <div
         className="min-h-screen bg-yellow-300"
         style={{
-          backgroundImage: `url(${addtaskbanner})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${addtaskbanner})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",

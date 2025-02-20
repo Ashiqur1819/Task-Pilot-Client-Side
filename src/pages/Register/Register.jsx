@@ -11,7 +11,7 @@ const Register = () => {
       <div
         className="min-h-screen"
         style={{
-          backgroundImage: `url(${registerImage})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${registerImage})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -85,10 +85,14 @@ const Register = () => {
           </button>
           <div className="mt-3">
             <p className="text-gray-700 text-center">
-              Already have an account? <span className="underline text-yellow-500 font-medium"><Link to="/login">Log In</Link></span>
+              Already have an account?{" "}
+              <span className="underline text-yellow-500 font-medium">
+                <Link to="/login">Log In</Link>
+              </span>
             </p>
           </div>
         </div>
+        <div className="invisible mt-12">dfd</div>
       </div>
     );
 };

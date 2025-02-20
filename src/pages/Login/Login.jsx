@@ -10,7 +10,7 @@ const Login = () => {
       <div
         className="min-h-screen"
         style={{
-          backgroundImage: `url(${loginbg})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${loginbg})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -77,7 +77,12 @@ const Login = () => {
             <span>Continue With Google</span>
           </button>
           <div className="mt-3">
-            <p className="text-gray-700 text-center">{"Don't have an account?"} <span className="underline text-yellow-500 font-medium"><Link to="/register">Register</Link></span></p>
+            <p className="text-gray-700 text-center">
+              {"Don't have an account?"}{" "}
+              <span className="underline text-yellow-500 font-medium">
+                <Link to="/register">Register</Link>
+              </span>
+            </p>
           </div>
         </div>
       </div>
