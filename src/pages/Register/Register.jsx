@@ -1,15 +1,18 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import googleImage from "../../assets/google.png"
 import registerImage from "../../assets/registerbg.jpg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { user, setUser, createNewUser, updateUserProfile, setLoading } =
       useAuth();
+      const navigate = useNavigate()
 
     const handleRegister = e => {
       e.preventDefault()
@@ -23,7 +26,8 @@ const Register = () => {
       createNewUser(email, password)
       .then(res => {
         setUser(res.user)
-        console.log(res);
+        toast.success("Registration Successful!");
+        navigate("/")
          updateUserProfile({ displayName: name}).then(() => {
            setUser((prev) => ({
              ...prev,

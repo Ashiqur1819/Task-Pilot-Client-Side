@@ -2,10 +2,31 @@ import { useState } from "react";
 import loginbg from "../../assets/bg4.jpg"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import googleImage from "../../assets/google.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
      const [showPassword, setShowPassword] = useState(false);
+     const { setUser, userLogin, setLoading } = useAuth();
+     const navigate = useNavigate()
+
+  const handleLogin = e => {
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value
+    const password = form.password.value
+
+    userLogin(email, password)
+    .then(res => {
+      setUser(res.user)
+              toast.success("Login Successful!");
+              navigate("/")
+              setLoading(false);
+    })
+
+  }
+
     return (
       <div
         className="min-h-screen"
@@ -21,7 +42,7 @@ const Login = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Log in to Your Account
           </h2>
-          <form className="mt-6">
+          <form onSubmit={handleLogin} className="mt-6">
             <div className="form-control">
               <label className="label px-0">
                 <span className="label-text font-medium text-gray-700">
