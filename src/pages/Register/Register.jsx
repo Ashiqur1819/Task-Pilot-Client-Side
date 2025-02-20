@@ -3,10 +3,40 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import googleImage from "../../assets/google.png"
 import registerImage from "../../assets/registerbg.jpg"
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { user, setUser, createNewUser, updateUserProfile, setLoading } =
+      useAuth();
+
+    const handleRegister = e => {
+      e.preventDefault()
+      const form = e.target
+      const name = form.name.value
+      const email = form.email.value
+      const password = form.password.value
+
+      const newUser = {name, email}
+
+      createNewUser(email, password)
+      .then(res => {
+        setUser(res.user)
+        console.log(res);
+         updateUserProfile({ displayName: name}).then(() => {
+           setUser((prev) => ({
+             ...prev,
+             displayName: name
+           }));
+           setLoading(false);
+         });
+      })
+      .catch(err => console.log(err))
+    }
+
+    console.log(user)
+
     return (
       <div
         className="min-h-screen"
@@ -22,7 +52,7 @@ const Register = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Create Your Account
           </h2>
-          <form className="mt-6">
+          <form onSubmit={handleRegister} className="mt-6">
             <div className="form-control mt-1">
               <label className="label px-0">
                 <span className="label-text font-medium text-gray-700">
