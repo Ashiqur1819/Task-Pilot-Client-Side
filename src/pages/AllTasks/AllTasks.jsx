@@ -16,9 +16,9 @@ const AllTasks = () => {
     },
   });
 
-  const todoTasks = tasks.filter(task => task.Category === "To-Do")
-  const inProgressTasks = tasks.filter(task => task.Category === "In Progress")
-  const DoneTasks = tasks.filter(task => task.Category === "Done")
+  const todoTasks = tasks.filter(task => task.category === "To-Do")
+  const inProgressTasks = tasks.filter(task => task.category === "In Progress")
+  const DoneTasks = tasks.filter(task => task.category === "Done")
   
 
 

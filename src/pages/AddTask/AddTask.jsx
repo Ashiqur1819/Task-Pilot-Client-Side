@@ -1,8 +1,28 @@
 import { useState } from "react";
 import addtaskbanner from "../../assets/bg5.jpg"
+import useAxios from "../../hooks/useAxios";
 
 const AddTask = () => {
       const [selected, setSelected] = useState("To-Do");
+      const axiosInstance = useAxios()
+
+      const handleAddTask = async(e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const title = form.title.value
+        const description = form.description.value
+        const category = form.category.value
+        const date = new Date();
+        const timestamp = date.toISOString();
+
+        const task = {title, description, timestamp, category}
+
+        // Send data to the backend
+        const res = await axiosInstance.post("/task", task)
+        console.log(res.data)
+
+      }
     return (
       <div
         className="min-h-screen bg-yellow-300"
@@ -18,7 +38,7 @@ const AddTask = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Add New Task
           </h2>
-          <form className="mt-6">
+          <form onSubmit={handleAddTask} className="mt-6">
             <div className="form-control mt-1">
               <label className="label px-0">
                 <span className="label-text font-medium text-gray-700">
@@ -27,7 +47,7 @@ const AddTask = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="title"
                 placeholder="Title"
                 className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
                 required
@@ -41,7 +61,7 @@ const AddTask = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="description"
                 placeholder="Description"
                 className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
               />
@@ -53,6 +73,7 @@ const AddTask = () => {
                 </span>
               </label>
               <select
+              name="category"
                 value={selected}
                 onChange={(e) => setSelected(e.target.value)}
                 className="select w-full text-gray-700 text-base input border border-gray-200 rounded-none cursor-pointer focus:border-green-400 focus:outline-none"

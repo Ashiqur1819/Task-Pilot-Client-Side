@@ -49,7 +49,9 @@ const Register = () => {
         
 
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        toast.warning(err.message)
+      })
     }
 
     const handleGoogleLogin = () => {
