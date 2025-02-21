@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import {
@@ -55,6 +54,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false)
     });
     return () => {
       unsubscribe();

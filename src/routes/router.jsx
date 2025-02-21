@@ -6,7 +6,7 @@ import Register from "../pages/Register/Register";
 import AddTask from "../pages/AddTask/AddTask";
 import AllTasks from "../pages/AllTasks/AllTasks";
 import TaskUpdate from "../pages/TaskUpdate/TaskUpdate";
-
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -20,15 +20,27 @@ const router = createBrowserRouter([
       },
       {
         path: "add_task",
-        element: <AddTask></AddTask>,
+        element: (
+          <PrivateRoute>
+            <AddTask></AddTask>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all_tasks",
-        element: <AllTasks></AllTasks>
+        element: (
+          <PrivateRoute>
+            <AllTasks></AllTasks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "task_update/:id",
-        element: <TaskUpdate></TaskUpdate>
+        element: (
+          <PrivateRoute>
+            <TaskUpdate></TaskUpdate>
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",

@@ -1,10 +1,7 @@
-
-
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
-import TaskCard from "../../components/TaskCard";
-import allTaskBannerImage from "../../assets/bg4.jpg"
-
+import allTaskBannerImage from "../../assets/bg4.jpg";
+import TaskCard from "../../components/taskCard";
 
 const AllTasks = () => {
   const axiosInstance = useAxios();
@@ -16,13 +13,12 @@ const AllTasks = () => {
     },
   });
 
-  const todoTasks = tasks.filter(task => task.category === "To-Do")
-  const inProgressTasks = tasks.filter(task => task.category === "In Progress")
-  const DoneTasks = tasks.filter(task => task.category === "Done")
-  
+  const todoTasks = tasks.filter((task) => task.category === "To-Do");
+  const inProgressTasks = tasks.filter(
+    (task) => task.category === "In Progress"
+  );
+  const DoneTasks = tasks.filter((task) => task.category === "Done");
 
-
-//   console.log(tasks);
 
   return (
     <div

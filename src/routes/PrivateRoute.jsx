@@ -1,25 +1,20 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-
-// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="min-h-screen mx-auto flex items-center justify-center">
-        Loading
-      </div>
-    );
+    return <div className="min-h-screen mx-auto flex items-center justify-center">
+        <img className="w-20 h-20 animate-spin" src="https://www.svgrepo.com/show/70469/loading.svg" alt="Loading icon"/>
+    </div>;
   }
 
-  if (user) {
+  if (user && user?.email) {
     return children;
   }
 
-  return <Navigate state={location.pathname} to="/login"></Navigate>;
+  return <Navigate to="/login"></Navigate>;
 };
 
 export default PrivateRoute;
