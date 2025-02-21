@@ -1,33 +1,30 @@
-import { useState } from "react";
-import addtaskbanner from "../../assets/bg5.jpg"
+import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import updateTaskBannerImage from "../../assets/bg6.webp"
 
-const AddTask = () => {
-      const [selected, setSelected] = useState("To-Do");
-      const axiosInstance = useAxios()
 
-      const handleAddTask = async(e) => {
-        e.preventDefault()
+const TaskUpdate = () => {
 
-        const form = e.target
-        const title = form.title.value
-        const description = form.description.value
-        const category = form.category.value
-        const date = new Date();
-        const timestamp = date.toISOString();
+    const {id} = useParams()
+   
+    const axiosInstance = useAxios();
+    const { data: task = {} } = useQuery({
+      queryKey: ["task"],
+      queryFn: async () => {
+        const res = await axiosInstance.get(`/tasks/${id}`);
+        return res.data;
+      },
+    });
+    const { title, description, category } = task[0] || {}
+    const [selected, setSelected] = useState(category);
 
-        const task = {title, description, timestamp, category}
-
-        // Send data to the backend
-        const res = await axiosInstance.post("/task", task)
-        console.log(res.data)
-
-      }
     return (
       <div
         className="min-h-screen bg-yellow-300"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${addtaskbanner})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${updateTaskBannerImage})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -35,10 +32,7 @@ const AddTask = () => {
       >
         <div className="invisible mb-12">dfd</div>
         <div className="card md:max-w-md md:mx-auto mx-4 bg-white p-4 md:p-6 lg:p-12 h-full rounded-none ">
-          <h2 className="text-2xl md:text-3xl font-bold text-black">
-            Add New Task
-          </h2>
-          <form onSubmit={handleAddTask} className="mt-6">
+          <form className="mt-6">
             <div className="form-control mt-1">
               <label className="label px-0">
                 <span className="label-text font-medium text-gray-700">
@@ -48,7 +42,7 @@ const AddTask = () => {
               <input
                 type="text"
                 name="title"
-                placeholder="Title"
+                value={title}
                 className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
                 required
               />
@@ -60,9 +54,9 @@ const AddTask = () => {
                 </span>
               </label>
               <input
+                value={description}
                 type="text"
                 name="description"
-                placeholder="Description"
                 className="grow w-full text-gray-700 text-base input border border-gray-200 rounded-none focus:border-green-400 focus:outline-none"
               />
             </div>
@@ -73,8 +67,8 @@ const AddTask = () => {
                 </span>
               </label>
               <select
-              name="category"
-                value={selected}
+                name="category"
+                value={category}
                 onChange={(e) => setSelected(e.target.value)}
                 className="select w-full text-gray-700 text-base input border border-gray-200 rounded-none cursor-pointer focus:border-green-400 focus:outline-none"
               >
@@ -85,7 +79,7 @@ const AddTask = () => {
             </div>
             <div className="form-control mt-6">
               <button className="bg-green-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
-                Add Task
+                Update Task
               </button>
             </div>
           </form>
@@ -94,4 +88,4 @@ const AddTask = () => {
     );
 };
 
-export default AddTask;
+export default TaskUpdate;
