@@ -6,13 +6,20 @@ import registerImage from "../../assets/registerbg.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import useAxios from "../../hooks/useAxios";
 
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { user, setUser, createNewUser, updateUserProfile, setLoading } =
-      useAuth();
+    const {
+      setUser,
+      createNewUser,
+      updateUserProfile,
+      setLoading,
+      loginWithGoogle,
+    } = useAuth();
       const navigate = useNavigate()
+      const axiosInstance = useAxios()
 
     const handleRegister = e => {
       e.preventDefault()
@@ -21,25 +28,45 @@ const Register = () => {
       const email = form.email.value
       const password = form.password.value
 
-      const newUser = {name, email}
-
       createNewUser(email, password)
-      .then(res => {
-        setUser(res.user)
+      .then(async(res) => {
+        setUser(res.user);
+        const userID = res.user.uid
+
         toast.success("Registration Successful!");
-        navigate("/")
-         updateUserProfile({ displayName: name}).then(() => {
-           setUser((prev) => ({
-             ...prev,
-             displayName: name
-           }));
-           setLoading(false);
-         });
+        navigate("/");
+        updateUserProfile({ displayName: name }).then(() => {
+          setUser((prev) => ({
+            ...prev,
+            displayName: name,
+          }));
+          setLoading(false);
+        });
+        //  Send user data to the backend
+        const newUser = {name, email, userID}
+        const result = await axiosInstance.post("/users", newUser)
+        console.log(result.data)
+        
+
       })
       .catch(err => console.log(err))
     }
 
-    console.log(user)
+    const handleGoogleLogin = () => {
+      loginWithGoogle()
+        .then((result) => {
+          setUser(result.user);
+          toast.success(`Login successful!`);
+          navigate("/");
+        })
+        .catch(() => {
+          toast.error(
+            "Login failed. Please check your connection and try again."
+          );
+        });
+    };
+
+
 
     return (
       <div
@@ -52,7 +79,7 @@ const Register = () => {
         }}
       >
         <div className="invisible mb-12">dfd</div>
-        <div className="card max-w-md mx-auto bg-white p-4 md:p-6 lg:p-12 h-full rounded-none col-span-3">
+        <div className="card md:max-w-md md:mx-auto mx-4 bg-white p-4 md:p-6 lg:p-12 h-full rounded-none col-span-3">
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Create Your Account
           </h2>
@@ -113,7 +140,7 @@ const Register = () => {
             </div>
           </form>
           <div className="divider font-medium text-gray-700">OR</div>
-          <button className="flex items-center gap-3 justify-center px-4 py-2 font-medium border border-gray-200 cursor-pointer hover:bg-gray-50">
+          <button onClick={handleGoogleLogin} className="flex items-center gap-3 justify-center px-4 py-2 font-medium border border-gray-200 cursor-pointer hover:bg-gray-50">
             <img src={googleImage} className="w-6" alt="" />
             <span>Continue With Google</span>
           </button>

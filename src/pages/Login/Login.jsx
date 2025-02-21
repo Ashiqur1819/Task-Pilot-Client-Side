@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
      const [showPassword, setShowPassword] = useState(false);
-     const { setUser, userLogin, setLoading } = useAuth();
+     const { setUser, userLogin, setLoading, loginWithGoogle } = useAuth();
      const navigate = useNavigate()
 
   const handleLogin = e => {
@@ -27,6 +27,20 @@ const Login = () => {
 
   }
 
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        toast.success(`Login successful!`);
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error(
+          "Login failed. Please check your connection and try again."
+        );
+      });
+  };
+
     return (
       <div
         className="min-h-screen"
@@ -38,7 +52,7 @@ const Login = () => {
         }}
       >
         <div className="mb-12 invisible">dfdfd</div>
-        <div className="card max-w-md mx-auto bg-[#ffffff] p-4 md:p-6 lg:p-12 rounded-none col-span-3">
+        <div className="card md:max-w-md md:mx-auto mx-4 bg-[#ffffff] p-4 md:p-6 lg:p-12 rounded-none col-span-3">
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Log in to Your Account
           </h2>
@@ -93,7 +107,7 @@ const Login = () => {
             </div>
           </form>
           <div className="divider font-medium text-gray-700">OR</div>
-          <button className="flex items-center gap-3 justify-center px-4 py-2 font-medium border border-gray-200 cursor-pointer hover:bg-gray-50">
+          <button onClick={handleGoogleLogin} className="flex items-center gap-3 justify-center px-4 py-2 font-medium border border-gray-200 cursor-pointer hover:bg-gray-50">
             <img src={googleImage} className="w-6" alt="" />
             <span>Continue With Google</span>
           </button>
@@ -106,6 +120,7 @@ const Login = () => {
             </p>
           </div>
         </div>
+        <div className="invisible mt-12">dfd</div>
       </div>
     );
 };

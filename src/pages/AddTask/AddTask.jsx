@@ -14,7 +14,7 @@ const AddTask = () => {
         }}
       >
         <div className="invisible mb-12">dfd</div>
-        <div className="card max-w-md mx-auto bg-white p-4 md:p-6 lg:p-12 h-full rounded-none col-span-3">
+        <div className="card md:max-w-md md:mx-auto mx-4 bg-white p-4 md:p-6 lg:p-12 h-full rounded-none col-span-3">
           <h2 className="text-2xl md:text-3xl font-bold text-black">
             Add New Task
           </h2>
@@ -64,7 +64,7 @@ const AddTask = () => {
             </div>
             <div className="form-control mt-6">
               <button className="bg-green-400 w-full px-6 py-2 text-gray-700 font-medium hover:bg-green-500 cursor-pointer">
-                Log In
+                Add Task
               </button>
             </div>
           </form>

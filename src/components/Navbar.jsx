@@ -40,7 +40,9 @@ const Navbar = () => {
           </div>
           <div>
             <Link to="/">
-              <button className="text-3xl font-bold text-gray-700">TaskPilot</button>
+              <button className="text-3xl font-bold text-gray-700 cursor-pointer">
+                TaskPilot
+              </button>
             </Link>
           </div>
         </div>
@@ -71,8 +73,14 @@ const Navbar = () => {
           )}
           {user && (
             <>
+              <h2 className="bg-green-100 px-6 py-2 text-gray-700 font-semibold">
+                {user?.displayName}
+              </h2>
               <Link to="/">
-                <button onClick={logOut} className="bg-red-500 px-6 py-2 text-white font-medium hover:bg-red-600 cursor-pointer">
+                <button
+                  onClick={logOut}
+                  className="bg-red-500 px-6 py-2 text-white font-medium hover:bg-red-600 cursor-pointer"
+                >
                   Log Out
                 </button>
               </Link>
