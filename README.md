@@ -1,27 +1,50 @@
 # TaskPilot
 
 ## Short Description
-TaskPilot is a Task Management Application where users can add, edit, and delete tasks. Tasks are categorized into three sections: **To Do, In Progress, and Done**. Changes are saved instantly to the database to maintain persistence. The app features authentication using Firebase and ensures a real-time, responsive user experience.
+TaskPilot is a Task Management Application that allows users to add, edit, and delete tasks. Tasks are categorized into three sections: To-Do, In Progress, and Done. Changes are saved instantly to the database to maintain persistence. The app features authentication using Firebase and ensures a real-time, responsive user experience.
 
 ## Live Links
 - **Live Application:** https://task-pilot-1.web.app
 - **Frontend Repository:** https://github.com/Ashiqur1819/Task-Pilot-Client-Side
 - **Backend Repository:** https://github.com/Ashiqur1819/Task-Pilot-Server-Side
 
-## Dependencies
+## Technologies Used
 ### Frontend
-- React.js (via Vite.js)
-- React Router
-- Firebase Authentication
-- Axios (for API requests)
-- Tailwind CSS (for styling)
+- **React.js**
+- **Firebase Authentication**
+- **React Router**
+- **Axios**
+- **Tailwind CSS**
 
 ### Backend
-- Node.js
-- Express.js
-- MongoDB (via Mongoose)
-- CORS
-- dotenv
+- **Node.js**
+- **Express.js**
+- **MongoDB** 
+---
+
+## Dependencies
+### Frontend
+- @tailwindcss/vite (^4.0.7)
+- @tanstack/react-query (^5.66.8)
+- axios (^1.7.9)
+- firebase (^11.3.1)
+- localforage (^1.10.0)
+- match-sorter (^8.0.0)
+- react (^19.0.0)
+- react-dom (^19.0.0)
+- react-icons (^5.5.0)
+- react-router-dom (^7.2.0)
+- react-toastify (^11.0.3)
+- sort-by (^1.2.0)
+- sweetalert2 (^11.17.2)
+- tailwindcss (^4.0.7)
+
+### Backend
+- cors (^2.8.5)
+- dotenv (^16.4.7)
+- express (^4.21.2)
+- mongodb (^6.13.0)
+
 
 ## Installation Steps
 ### Frontend Setup
@@ -68,16 +91,4 @@ TaskPilot is a Task Management Application where users can add, edit, 
    node index.js
    ```
 
-## Technologies Used
-### Frontend
-- **React.js**
-- **Firebase Authentication**
-- **React Router**
-- **Axios**
-- **Tailwind CSS**
-
-### Backend
-- **Node.js & Express.js**
-- **MongoDB** 
----
 
