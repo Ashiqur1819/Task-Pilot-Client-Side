@@ -43,7 +43,6 @@ const Register = () => {
         //  Send user data to the backend
         const newUser = { name, email, userID };
         const result = await axiosInstance.post("/users", newUser);
-        console.log(result.data);
       })
       .catch((err) => {
         toast.warning(err.message);

@@ -27,8 +27,6 @@ const TaskUpdate = () => {
     }
   }, [category]);
 
-  console.log("Selected:", selected, "Category:", category);
-
   const handleUpdateTask = async (e) => {
     e.preventDefault();
 

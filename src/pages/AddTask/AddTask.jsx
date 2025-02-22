@@ -1,6 +1,7 @@
 import { useState } from "react";
 import addtaskbanner from "../../assets/bg5.jpg";
 import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const AddTask = () => {
   const [selected, setSelected] = useState("To-Do");
@@ -19,8 +20,15 @@ const AddTask = () => {
     const task = { title, description, timestamp, category };
 
     // Send data to the backend
-    const res = await axiosInstance.post("/task", task);
-    console.log(res.data);
+    const res = await axiosInstance.post("/tasks", task);
+    if(res.data.insertedId){
+    Swal.fire({
+      title: "Task Added Succesfully!",
+      icon: "success",
+      draggable: true,
+    });
+    }
+
   };
   return (
     <div

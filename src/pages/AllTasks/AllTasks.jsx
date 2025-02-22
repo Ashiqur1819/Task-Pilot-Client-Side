@@ -19,7 +19,6 @@ const AllTasks = () => {
   );
   const DoneTasks = tasks.filter((task) => task.category === "Done");
 
-
   return (
     <div
       className="min-h-screen bg-yellow-300"
@@ -36,17 +35,12 @@ const AllTasks = () => {
         <h2 className="text-3xl md:text-4xl text-center font-bold">
           All Tasks
         </h2>
-
         <div className="grid md:grid-cols-3 gap-6 mt-6">
           <div className="p-4 border border-gray-200">
             <h2 className="text-2xl mb-3 font-bold">To-Do</h2>
             <div>
               {todoTasks.map((task) => (
-                <TaskCard
-                  refetch={refetch}
-                  task={task}
-                  key={task._id}
-                ></TaskCard>
+                <TaskCard refetch={refetch} task={task} key={task._id} />
               ))}
             </div>
           </div>
